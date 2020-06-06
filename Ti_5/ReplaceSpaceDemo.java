@@ -1,17 +1,16 @@
 public class ReplaceSpaceDemo {
 
-/**
- * 替换空格：
- * 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。
- *
- * 需求：是否需要原址，如果没有该条件，则创建另一StringBuffer对象，复制即可
- *
- * 解法：原址+时间复杂度为O(n)条件下，则需要先扩容，然后从后往前复制。所有字符都只复制（移动）一次，因此时间复杂度为O(n)
- *
- * */
+    /**
+     * 替换空格：
+     * 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。
+     * <p>
+     * 需求：是否需要原址，如果没有该条件，则创建另一StringBuffer对象，复制即可
+     * <p>
+     * 解法：原址+时间复杂度为O(n)条件下，则需要先扩容，然后从后往前复制。所有字符都只复制（移动）一次，因此时间复杂度为O(n)
+     */
     public String replaceSpace(StringBuffer str) {
 
-        if (str == null){
+        if (str == null) {
             return null;
         }
 
@@ -35,6 +34,9 @@ public class ReplaceSpaceDemo {
 //        while (p != q){
 //
 //            if (str.charAt(p) != ' '){
+//                // 错误写法：
+//                // You cannot set a new value to a position with text.chatAt(i), with this you can only read values.
+//                // str.charAt(q--) = str.charAt(p);
 //                str.setCharAt(q, str.charAt(p));
 //            }else {
 //
@@ -52,15 +54,13 @@ public class ReplaceSpaceDemo {
 
         // 有意思的写法：
         // i不会跳跃增加，但str会扩容!
-        for(int i=0;i<str.length();i++)
-        {
+        for (int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
-            if(c==' ')
-            {
+            if (c == ' ') {
                 System.out.println("before replace = " + System.identityHashCode(str));
 
                 // *****
-                str.replace(i,i+1,"%20");
+                str.replace(i, i + 1, "%20");
                 System.out.println("after replace = " + System.identityHashCode(str));
             }
         }
@@ -68,8 +68,8 @@ public class ReplaceSpaceDemo {
         return newstr;
     }
 
-    public static void main(String[] args){
-        
+    public static void main(String[] args) {
+
         StringBuffer str = new StringBuffer();
         str.append("We");
         str.append(" ");

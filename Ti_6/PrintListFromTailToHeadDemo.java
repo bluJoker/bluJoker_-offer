@@ -36,6 +36,12 @@ public class PrintListFromTailToHeadDemo {
 
     // 使用栈+迭代：
     public ArrayList<Integer> printListFromTailToHeadIteration(ListNode listNode) {
+
+        //不需要，因为在下面while循环条件处过滤了
+//        if (listNode == null){
+//            return null;
+//        }
+
         ArrayList<Integer> list = new ArrayList<>();
         Stack<Integer> stack = new Stack<>();
 
