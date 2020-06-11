@@ -69,6 +69,7 @@ public class DeleteDuplicationInLinkedList {
             }
 
             if (!needDelete){
+                // 删除多个重复元素后pPrev需要重新指向删除后的新元素
                 pPrev = pNode;
                 pNode = pNode.next;
             }else {
@@ -127,7 +128,7 @@ public class DeleteDuplicationInLinkedList {
 
 //        System.out.println("list = " + demo.printListFromTailToHeadIteration(demo.head));
 
-        System.out.println("list = " + demo.deleteDuplicationAll(demo2.head));
+        System.out.println("list = " + demo2.deleteDuplicationAll(demo2.head));
         System.out.println();
     }
 }
