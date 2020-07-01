@@ -56,6 +56,27 @@ public class IsPopOrder {
 
         return false;
     }
+
+
+    // 我喜欢这种写法
+    public boolean IsPopOrder2(int [] pushA,int [] popA) {
+        if (pushA == null || popA == null || pushA.length == 0 ||
+                popA.length == 0){
+            return false;
+        }
+
+        Stack<Integer> s = new Stack<>();
+        int popIndex = 0;
+        for (int i = 0; i < pushA.length; i++){
+            s.push(pushA[i]);
+            while(!s.empty() && s.peek() == popA[popIndex]){
+                s.pop();
+                popIndex++;
+            }
+        }
+
+        return s.empty();
+    }
     
     public static void main(String[] args){
         IsPopOrder isPopOrder = new IsPopOrder();
@@ -72,8 +93,8 @@ public class IsPopOrder {
 
         int[] popG = {1, 2, 3, 4, 5, 6};
 
-        boolean isPop = isPopOrder.IsPopOrder(pushE, popE);
-//        boolean isPop = isPopOrder.IsPopOrder(pushA, popG);
+//        boolean isPop = isPopOrder.IsPopOrder(pushE, popE);
+        boolean isPop = isPopOrder.IsPopOrder2(pushA, popB);
 
         System.out.println("isPop = " + isPop);
         

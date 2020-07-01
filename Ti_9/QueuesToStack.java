@@ -6,7 +6,7 @@ public class QueuesToStack {
     Queue<Integer> queue1 = new LinkedList<>();
     Queue<Integer> queue2 = new LinkedList<>();
 
-    public void enqueue(int node) {
+    public void push(int node) {
         if (queue1.isEmpty() && queue2.isEmpty()) {
             queue1.add(node);
         }
@@ -19,7 +19,7 @@ public class QueuesToStack {
         }
     }
 
-    public int dequeue() {
+    public int pop() {
 //        while (!queue1.isEmpty()){
 //            if (queue1.size() == 1){
 //                return queue1.remove();
@@ -59,19 +59,19 @@ public class QueuesToStack {
     public static void main(String[] args) {
         QueuesToStack queuesToStack = new QueuesToStack();
 
-        queuesToStack.enqueue(1);
-        queuesToStack.enqueue(2);
-        queuesToStack.enqueue(3);
+        queuesToStack.push(1);
+        queuesToStack.push(2);
+        queuesToStack.push(3);
 
 //        System.out.println(queuesToStack.queue1.remove());
 //        System.out.println(queuesToStack.queue1.remove());
 //        System.out.println(queuesToStack.queue1.remove());
 
 
-        System.out.println(queuesToStack.dequeue());
-        System.out.println(queuesToStack.dequeue());
+        System.out.println(queuesToStack.pop());
+        System.out.println(queuesToStack.pop());
 
-        System.out.println(queuesToStack.dequeue());
+        System.out.println(queuesToStack.pop());
 
     }
 }
