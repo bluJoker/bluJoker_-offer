@@ -33,7 +33,8 @@ public class KthNodeSolution {
         return node;
     }
 
-    TreeNode KthNode(TreeNode pRoot, int k) {
+    // 方法1：将中序遍历序列全部遍历完找出第k个
+    TreeNode KthNode1(TreeNode pRoot, int k) {
         ArrayList<TreeNode> arrayList = new ArrayList<>();
         KthNode(pRoot, arrayList);
         if (k <= 0 || k > arrayList.size()) {
@@ -52,6 +53,12 @@ public class KthNodeSolution {
         return arrayList;
     }
 
+    // 方法2：在中序遍历过程中找到第k大结点就直接返回
+    // java中如何在遍历过程中改变k的值？无指针地址&k
+    TreeNode KthNode2(TreeNode pRoot, int k) {
+        // TODO:
+        return null;
+    }
 
     public static void main(String[] args) {
         KthNodeSolution kthNodeSolution = new KthNodeSolution();
@@ -63,7 +70,7 @@ public class KthNodeSolution {
         kthNodeSolution.put(6);
         kthNodeSolution.put(8);
 
-        TreeNode res = kthNodeSolution.KthNode(kthNodeSolution.pHead, 7);
+        TreeNode res = kthNodeSolution.KthNode1(kthNodeSolution.pHead, 7);
         if (res == null){
             System.out.println(res);
         }else {

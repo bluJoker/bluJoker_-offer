@@ -1,5 +1,9 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
 * ======================================================================================================================================================================
+ * 方法1递归图解：
  *
  *           8
  * 		   /   \
@@ -76,6 +80,9 @@ public class TreeToLinkedList {
     }
 
     // =================================================================================================================
+    // 方法1：树形dp套路。时间复杂度O(N)，额外空间复杂度O(h)，h为二叉树的高度。
+    // 可以用process递归函数发生的次数来估算时间复杂度，process会处理所有的子树，子树的数量就是二叉树节点的个数。所以时间复杂度O(N)。
+    // process递归函数最多占用二叉树高度为h的栈空间，所以额外空间复杂度O(h)。
     private class ReturnType{
         TreeNode start;
         TreeNode end;
@@ -85,7 +92,8 @@ public class TreeToLinkedList {
             this.end = end;
         }
     }
-    public TreeNode convert(TreeNode pRootOfTree) {
+
+    public TreeNode convert1(TreeNode pRootOfTree) {
         if (pRootOfTree == null){
             return null;
         }
@@ -117,6 +125,42 @@ public class TreeToLinkedList {
         return new ReturnType(leftList.start != null ? leftList.start : head,
                 rightList.end != null ? rightList.end : head);
     }
+
+
+    // =================================================================================================================
+    // 方法2：中序遍历。用队列等容器收集二叉树中序遍历结果的方法。
+    // 时间复杂度O(N)，额外空间复杂度O(N)，具体过程如下：
+    // 1. 生成一个队列，记为queue，按照二叉树中序遍历的顺序，将每个节点放入queue中。
+    // 2. 从queue中依次弹出节点，并按照弹出的顺序重连所有的节点即可。
+    public TreeNode convert2(TreeNode head){
+        Queue<TreeNode> queue = new LinkedList<>();
+        inOrderToQueue(head, queue);
+
+        head = queue.poll();
+        TreeNode prev = head;
+
+        while (!queue.isEmpty()){
+            TreeNode node = queue.poll();
+
+            prev.right = node;
+            node.left = prev;
+
+            prev = node;
+        }
+        return head;
+    }
+
+    private void inOrderToQueue(TreeNode head, Queue<TreeNode> queue){
+        if (head == null){
+            return;
+        }
+
+        inOrderToQueue(head.left, queue);
+        queue.offer(head);
+        inOrderToQueue(head.right, queue);
+    }
+
+
     // -----------------------------------------------------------------------------------------------------------------
 
     public static void main(String[] args) {
@@ -129,7 +173,8 @@ public class TreeToLinkedList {
         treeJZ.put(7);
         treeJZ.put(12);
         treeJZ.put(16);
-        TreeNode head2 = treeJZ.convert(treeJZ.pHead);
+//        TreeNode head1 = treeJZ.convert1(treeJZ.pHead);
+        TreeNode head2 = treeJZ.convert2(treeJZ.pHead);
 
         System.out.println();
     }

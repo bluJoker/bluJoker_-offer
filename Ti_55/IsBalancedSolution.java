@@ -7,7 +7,6 @@ public class IsBalancedSolution {
 
         public TreeNode(int val) {
             this.val = val;
-
         }
     }
 
@@ -25,7 +24,9 @@ public class IsBalancedSolution {
         return pHead;
     }
 
-    // 方法一：使用TreeDepthSolution。时间复杂度O(nlogn)
+    // 方法一：使用TreeDepthSolution。
+    // 虽然可行，但效率不会太高。这段代码会递归访问每个节点的整棵子树。也就是说，getHeight会被反复调用计算同一个节点的高度
+    // 时间复杂度O(nlogn)
     public int getHeight(TreeNode root) {
         if (root == null) {
             return 0;
@@ -35,6 +36,9 @@ public class IsBalancedSolution {
 
     public boolean isBalanced1(TreeNode root){
         if (root == null){
+
+            // 递归到null，需要返回true
+            // 但如果传入null，应该返回false吧???
             return true;
         }
 
@@ -46,7 +50,8 @@ public class IsBalancedSolution {
         return isBalanced1(root.left) && isBalanced1(root.right);
     }
 
-    // 方法二：使用树形dp套路，后序遍历。时间复杂度O(n)
+    // 方法二：使用树形dp套路，后序遍历。
+    // 只需要后序遍历一次，计算高度和判断平衡放在一起。故时间复杂度O(n)
     public class ReturnType{
         public boolean isBalanced;
         public int height;
@@ -65,6 +70,7 @@ public class IsBalancedSolution {
         ReturnType leftData = process(root.left);
         ReturnType rightData = process(root.right);
 
+        // 该树为平衡的条件：左右子树均平衡 + 左右子树高度差<2
         boolean isBalanced = leftData.isBalanced && rightData.isBalanced &&
                 (Math.abs(leftData.height - rightData.height) < 2);
         int height = Math.max(leftData.height, rightData.height) + 1;
@@ -84,7 +90,7 @@ public class IsBalancedSolution {
     // 我们应该拿什么作为错误代码呢？空树的高度一般被记作-1，所以将-1作为错误代码并不是上乘之选。其实，我们可以将Integer.MIN_VALUE 作为错误代码。
 
     // 这段代码需要O(N) 的时间和O(H) 的空间，其中H 为树的高度。
-    public static int checkHeight(TreeNode root){
+    public int checkHeight(TreeNode root){
         if (root == null){
             return 0;
         }

@@ -34,7 +34,7 @@ public class TreeDepthSolution {
 
         int leftDepth = TreeDepth1(root.left);
         int rightDepth = TreeDepth1(root.right);
-        return (leftDepth > rightDepth) ? (leftDepth + 1) : (rightDepth + 1);
+        return Math.max(leftDepth, rightDepth) + 1;
     }
 
     // 后序遍历
@@ -74,6 +74,8 @@ public class TreeDepthSolution {
             }
 
             if (root == last){
+
+                // 一层遍历完后高度+1
                 height++;
                 last = nLast;
             }
