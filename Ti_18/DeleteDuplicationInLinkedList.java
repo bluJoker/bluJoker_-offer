@@ -1,3 +1,14 @@
+/**
+ *
+ *   1->2->3->3->4->4->5
+ *   1->2->5
+ *
+ *   1   ->   2   ->   3 -> 3 -> 4 -> 4   ->   5
+ *          pPrev    pNext                   pDelete
+ *
+ * */
+
+
 public class DeleteDuplicationInLinkedList {
 
     public class ListNode {
@@ -51,8 +62,7 @@ public class DeleteDuplicationInLinkedList {
         return pHead;
     }
 
-    public ListNode deleteDuplicationAll(ListNode pHead)
-    {
+    public ListNode deleteDuplicationAll(ListNode pHead) {
         if (pHead == null){
             return null;
         }

@@ -3,6 +3,21 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+/**
+ *
+ * 之字形打印二叉树
+ *
+ *           1                  输出： 1   3 2   4 5 6   8 7   9 11
+ * 		  /     \
+ *       2       3
+ *      /      /   \
+ *     4      5     6           |_1_|     r | 3 |     | 4 |   r | 8 |   l | 9 |
+ *          /   \                         l |_2_|   l | 5 |   l |_7_|   r |_0_|      奇 1、3、5..     stack1: l r
+ *         7     8                                  r |_6_|                          偶 2、4..        stack2: r l
+ * 			   /  \
+ * 			  9    0              1           2         3         4         5
+ *
+ * */
 public class PrintByLevelN {
 
     public class TreeNode {

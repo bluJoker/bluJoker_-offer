@@ -1,5 +1,10 @@
 import java.util.Stack;
 
+/**
+ *
+ * 删除一个元素的步骤：
+ * 当stack2不为空时，在stack2中的栈顶元素是最先进入队列的元素，可以弹出。当stack2为空时，我们把stack1中的元素逐个弹出压入stack2。
+ * */
 public class StacksToQueue {
 
     Stack<Integer> stack1 = new Stack<Integer>();
@@ -36,8 +41,5 @@ public class StacksToQueue {
         // 1, 2, 3, 4
         System.out.println(solution2.dequeue());
 
-
     }
-
-
 }

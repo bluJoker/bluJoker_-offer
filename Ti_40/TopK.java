@@ -2,6 +2,8 @@ import java.util.*;
 
 public class TopK {
     // 1、使用快排的partition方法，时间O(logn)，但修改了原数组
+    // 7, 5, 1, 6, 2, 4, 3, 8
+    // k = 4: 1, 2, 3, 4
     public ArrayList<Integer> GetLeastNumbers_Solution(int[] input, int k) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         if (input == null || k > input.length || k <= 0) {
@@ -11,6 +13,8 @@ public class TopK {
         int start = 0;
         int end = input.length - 1;
         int index = partition(input, start, end);
+
+        // index = k-1时，0到index即为所求的最小的k个数，注意这k个数字不一定是排序的
         while (index != k - 1) {
             if (index > k - 1) {
                 end = index - 1;
@@ -116,10 +120,12 @@ public class TopK {
     }
 
     public static void main(String[] args) {
-        int[] arr = {4, 5, 1, 6, 2, 7, 3, 8};
+        int[] arr = {7, 5, 1, 6, 2, 4, 3, 8};
         System.out.println("Arrays.toString(arr) = " + Arrays.toString(arr));
 
         TopK topK = new TopK();
-        System.out.println(topK.GetLeastNumbers_TopK_PriorityQueue(arr, 7));
+//        System.out.println(topK.GetLeastNumbers_TopK_PriorityQueue(arr, 7));
+        System.out.println(topK.GetLeastNumbers_Solution(arr, 4));
+
     }
 }
