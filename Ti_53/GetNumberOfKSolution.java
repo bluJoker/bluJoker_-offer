@@ -8,6 +8,7 @@ public class GetNumberOfKSolution {
         while (lo <= hi) {
             int mid = lo + (hi - lo) / 2;
             if (k == array[mid]) {
+                // 如果前面的数字不是k，则不是第一个k，需要继续在前面找。当然如果此时mid已经是第一个元素，此时即就是第一个k
                 if (mid == 0 || (mid > 0 && k != array[mid - 1])) {
                     return mid;
                 } else {

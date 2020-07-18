@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * 题目条件：1、递增排序数组  2、输出任意一对即可
+ * */
 public class FindNumbersWithSumSolution {
 
 

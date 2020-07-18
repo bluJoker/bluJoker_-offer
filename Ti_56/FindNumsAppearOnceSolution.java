@@ -9,7 +9,7 @@ public class FindNumsAppearOnceSolution {
             return;
         }
 
-        int num = array[0];
+        int num = array[0]; // Tips1
         for (int i = 1; i < array.length; i++) {
             num = num ^ array[i];
         }

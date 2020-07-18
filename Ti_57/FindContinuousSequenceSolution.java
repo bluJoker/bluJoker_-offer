@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 
+/**
+ * 双指针从左开始右移，不能夹逼，和FindNumbersWithSumSolution区别
+ *
+ * */
 public class FindContinuousSequenceSolution {
 
     public ArrayList<ArrayList<Integer>> FindContinuousSequence(int sum) {
@@ -17,6 +21,8 @@ public class FindContinuousSequenceSolution {
                     list.add(i);
                 }
                 result.add(list);
+
+                // 等于结果集添加后，左边或右边右移都行
                 plow++;
                 //如果当前窗口内的值之和小于sum，那么右边窗口右移一下
             }else if(cur < sum){

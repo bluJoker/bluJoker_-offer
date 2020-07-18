@@ -1,8 +1,8 @@
 public class Print1ToMaxSolution {
 
     // 解法1：字符串解决大数问题
-    public void print1ToMaxN(int n){
-        if (n <= 0){
+    public void print1ToMaxN(int n) {
+        if (n <= 0) {
             return;
         }
 
@@ -11,7 +11,7 @@ public class Print1ToMaxSolution {
             number[i] = '0';
         }
 
-        while (!Increment(number)){
+        while (!Increment(number)) {
             printNumber(number);
         }
 
@@ -25,24 +25,24 @@ public class Print1ToMaxSolution {
         int nLength = number.length;
 
         // 从后往前加，判断是否进位
-        for (int i = nLength-1; i >=0; i--) {
+        for (int i = nLength - 1; i >= 0; i--) {
             // 加上进位
-            int nSum = number[i] - '0' +nTakeOver;
+            int nSum = number[i] - '0' + nTakeOver;
             // 当且仅当为最后一位时才需要+1
-            if (i == nLength-1){
+            if (i == nLength - 1) {
                 nSum++;
             }
 
-            if (nSum >= 10){
-                if (i==0){
+            if (nSum >= 10) {
+                if (i == 0) {
                     isOverflow = true;
-                }else {
+                } else {
                     nSum -= 10;
-                    nTakeOver=1;
-                    number[i] = (char)('0'+nSum);
+                    nTakeOver = 1;
+                    number[i] = (char) ('0' + nSum);
                 }
-            }else {
-                number[i] = (char)('0'+nSum);
+            } else {
+                number[i] = (char) ('0' + nSum);
                 break;
             }
         }
@@ -51,10 +51,11 @@ public class Print1ToMaxSolution {
     }
 
 
+    // TODO: 未理解
     // 解法2：全排列
     //打印1到最大的n位数的主方法
-    public void printToMaxOfDigits(int n){
-        if(n <= 0){
+    public void printToMaxOfDigits(int n) {
+        if (n <= 0) {
             System.out.println("输入的n没有意义");
             return;
         }
@@ -67,9 +68,10 @@ public class Print1ToMaxSolution {
             printToMaxOfNDigitsRecursively(number, n, 0);
         }
     }
+
     //利用递归实现1到最大的n位数的全排列
     public void printToMaxOfNDigitsRecursively(char[] number, int n, int index) {
-        if(index == n - 1){
+        if (index == n - 1) {
             printNumber(number);
             return;
         }
@@ -80,16 +82,15 @@ public class Print1ToMaxSolution {
     }
 
 
-
     private void printNumber(char[] number) {
         boolean isBeginning0 = true;
         int nLength = number.length;
         for (int i = 0; i < nLength; ++i) {
             // 找到第一个不为0的位置，打印其及其后所有字符
-            if(isBeginning0 && number[i]!='0'){
+            if (isBeginning0 && number[i] != '0') {
                 isBeginning0 = false;
             }
-            if(!isBeginning0){
+            if (!isBeginning0) {
                 System.out.print(number[i]);
             }
         }
