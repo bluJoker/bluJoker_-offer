@@ -40,6 +40,7 @@ public class Power {
             return base;
         }
 
+        // Tips：n为偶数，右移1位为n/2；n为奇数，右移1位为(n-1)/2
         double result = powerWithUnsignedExponent(base, exponent >> 1);
         result *=result;
 
